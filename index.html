@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Filip❤️</title>
+    <style>
+        :root {
+            --main-yellow: #FFDE59; 
+            --bg-cream: #FFF9E6;
+            --text-brown: #5D4037;
+            --accent-red: #FF6B6B;
+        }
+
+        /* 基础样式 */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-cream);
+            background-image: url('pics/background.jpg');
+            background-attachment: fixed; 
+            background-size: cover; 
+            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-brown);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* --- 密码遮罩层 --- */
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-cream);
+            background-image: url('pics/background.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.6s ease;
+        }
+
+        .password-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 35px;
+            text-align: center;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+            max-width: 420px;
+            width: 85%;
+            backdrop-filter: blur(5px);
+        }
+
+        .password-box h2 { color: var(--text-brown); margin-bottom: 10px; }
+        .password-box p { font-size: 1.1rem; color: #777; }
+
+        .password-box input {
+            padding: 12px 20px;
+            width: 80%;
+            border-radius: 15px;
+            border: 2px solid var(--main-yellow);
+            margin: 25px 0;
+            font-size: 1.1rem;
+            outline: none;
+            text-align: center;
+        }
+
+        .password-box button {
+            padding: 12px 40px;
+            background-color: var(--main-yellow);
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--text-brown);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .password-box button:hover { transform: scale(1.05); background-color: #f7d348; }
+
+        /* Header Section */
+        header {
+            height: 92vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+            width: 100%;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        h1 { font-size: 3.5rem; margin: 20px 0; text-shadow: 2px 2px 8px rgba(255,255,255,0.8); }
+        .subtitle { font-size: 1.3rem; background: rgba(255,255,255,0.5); padding: 10px 20px; border-radius: 25px; max-width: 80%; }
+
+        /* Story Section */
+        .story-container {
+            max-width: 850px;
+            width: 90%;
+            padding: 50px 0;
+        }
+
+        .moment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 80px;
+            background: rgba(255, 255, 255, 0.6); 
+            padding: 30px;
+            border-radius: 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .moment:hover { transform: translateY(-10px); }
+
+        .moment img {
+            width: 100%;
+            max-height: 550px;
+            object-fit: cover;
+            border-radius: 25px;
+            margin-bottom: 25px;
+        }
+
+        .moment-text {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .moment-text h2 { color: var(--accent-red); margin-bottom: 15px; font-size: 1.8rem; }
+        
+        .moment-text p {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        /* 特殊布局：侧边图 */
+        .side-layout {
+            flex-direction: row !important;
+            align-items: center;
+        }
+
+        /* 爱心动画 */
+        .heart {
+            position: fixed;
+            color: var(--accent-red);
+            animation: float 4s linear forwards;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        footer { padding: 40px; background: rgba(255,255,255,0.5); width: 100%; text-align: center; font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+
+    <div id="password-overlay">
+        <div class="password-box">
+            <h2>🔒 Romantic Security</h2>
+            <p>Enter Zhen Mei's favorite season</p>
+            <input type="text" id="password-input" placeholder="Hint: it’s so obvious...">
+            <br>
+            <button onclick="checkPassword()">❤️ Unlock ❤️</button>
+            <p id="error-msg" style="color: #ff4d4d; display: none; margin-top: 15px; font-weight: bold;">Oops! That's not it... Try again! 🌸🍂❄️</p>
+        </div>
+    </div>
+
+    <header>
+        <img src="pics/us.png" class="hero-img" alt="Nailong">
+        <h1>BB 😀 Happy Birthday! 🎂 Millions kisses for U !</h1>
+        <p class="subtitle">January 28th — <strong>A very special day for a very special person.</strong><br>I really wish I could be next to you at this moment.</p>
+        <p style="margin-top: 20px; font-weight: bold; opacity: 0.7;">Scroll down BB↓</p>
+    </header>
+
+    <div class="story-container">
+        
+        <div class="moment">
+            <div class="moment-text">
+                <h2>❤️ Magical Feeling ❤️</h2>
+                <p>It feels like that I've known you far longer than the 300 days we've shared. In this time,
+                   we’ve grown into close friends and couple, talking about everything — and it has been truly wonderful. 😊
+                   Listening makes a man more charming and you are really good at it. Besides, you never feel annoyed by my random, crazy behaviors. 😊
+                   Thank you for understanding me, for tending to my feelings, for reading my unspoken expressions, and for standing by me, always.
+                </p>
+            </div>
+        </div>
+
+        <div class="moment" style="flex-direction: row; align-items: center;">
+            <img src="pics/cat.jpg" alt="First Date" style="width: 45%; height: auto; border-radius: 20px; margin-right: 25px;"> 
+            <div class="moment-text" style="width: 55%;">
+                <h2>❤️ Our First Date ❤️</h2>
+                <p>Do u remember <strong>I asked you if it’s a date ???</strong><br>
+                   I’m happy that I came to see you instead of waiting. Sometimes I really like over thinking, luckily I did not think too much about take the step to see you.
+                   But u don’t let me sleep 💤💤💤, <strong>u hugged me very tight.</strong> That day was the beginning of us. ❤️</p>
+            </div>
+        </div>
+
+        <div class="moment">
+            <img src="pics/park.jpg" alt="Kisses"> 
+            <div class="moment-text">
+                <h2>❤️ Kisses ❤️</h2>
+                <p>I love this picture. Nice park with wonderful memory in Warsaw. I appreciate every moment we spent. 
+                   When we were walking outside, I was hoping the time would go slower. I still have many things want to do with U.
+                   I cry cry a lot when you got to the train, it is like something happend in the dramas. I instantly started to miss you (none stop).
+                   Btw, thanks for the ice cream from ur grandma. U r soooo cute when kissing me 🥰🥰🥰 I look at this picture almost everyday.</p>
+            </div>
+        </div>
+
+        <div class="moment">
+            <img src="pics/cq.jpg" alt="Visit"> 
+            <div class="moment-text">
+                <h2>❤️ U visited me ❤️</h2>
+                <p>Thank you so much for taking care of me even in my own place. I was so excited that you came !!! 
+                   I want to share many things with you so I want you get up early =_+ 哈哈. 
+                   When you were besides me, I am definitely full of energy. I enjoy the cardio with U BB. 
+                   These memories are unforgettable and I wish we could have more and more in the future.
+                   U care about my emotions and body and always want me eat well. Thanks for ur handwriting <strong>宝贝</strong></p>
+            </div>
+        </div>
+
+     
+        <div class="moment">
+            <img src="pics/call.jpg" alt="Calls"> 
+            <div class="moment-text">
+                <h2>❤️ Lovely calls ❤️</h2>
+                <p>When calling becomes our daily routine. U give me energy for getting up and comforting my mood. 
+                   I enjoy looking at you. U always say you look not good, but in my opinion: 
+                   U r soooo cute and handsome in every angle. ❤️</p>
+            </div>
+        </div>
+
+        <div class="moment">
+            <img src="pics/bear.png" alt="Happy Birthday" style="max-width: 400px;"> 
+            <div class="moment-text">
+                <h2>❤️ HAPPY BIRTHDAY ❤️</h2>
+                <p>You're always so gentle with me, supportive, and a listener. 
+                   With your encouragement, I feel myself becoming a better person. 
+                   I increase my ❤️ for you every single day. You are the kind of person whose charm becomes more apparent the longer you spend time with them.
+                   Believe me, you are the <strong>best man 😊 on this multi-universe</strong>. 
+                   May your 24th year be filled with <strong>wonderful experiences</strong> and may your life always remain as radiant as ever.
+                   <strong>Happy birthday, Dear!!!</strong></p>
+            </div>
+        </div>
+
+        <div class="moment">
+            <div class="moment-text">
+           </div>
+        <video width="100%" controls style="border-radius: 20px; max-width: 450px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+        <source src="pics/video2.mp4" type="video/mp4">
+        </video>
+    <div class="moment-text">
+        <p> ❤️ Happy Happy Happy. Special dance for you. ❤️</p>
+    </div>
+</div>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ by <strong>Jody / Zhen Mei / BaoBao</strong> | January 2026</p>
+    </footer>
+
+    <script>
+        // 密码验证逻辑
+        function checkPassword() {
+            const input = document.getElementById('password-input').value.toLowerCase().trim();
+            const overlay = document.getElementById('password-overlay');
+            const errorMsg = document.getElementById('error-msg');
+
+            if (input === 'summer') {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 600);
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('password-input').value = '';
+            }
+        }
+
+        // 回车键支持
+        document.getElementById('password-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // 飘落爱心逻辑
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }, 450);
+    </script>
+</body>
+</html>
